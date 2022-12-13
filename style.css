@@ -1,0 +1,112 @@
+body {
+    background-image: url('https://media.istockphoto.com/id/1042153956/photo/abstract-powder-splatted-background-paint-holi.jpg?s=612x612&w=0&k=20&c=kj1Vy-iMlK7xhJQuXUk1TqMxldZxE2GJCFxQYI7wJBk=');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#top-header {
+    display: flex;
+    justify-content: center;
+    margin-left: 5%;
+}
+#header {
+    margin-top: 2%;
+}
+h3 {
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 70px;
+    font-style: italic;
+    color: crimson;
+}
+h4 {
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 30px;
+    font-style: italic;
+    color: crimson;
+}
+h5 {
+    text-align: center;
+}
+.hydrate {
+    color: black;
+}
+h1 {
+    margin-left: 20%;
+}
+/* #submit-form {
+    margin-left: 30%;
+} */
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+#another-one {
+    float: left;
+    width: 50%;
+}
+#edit-form {
+    float: right;
+    width: 50%;
+}
+#crystal-image {
+    width: 850px;
+    height: 650px;
+    border: dotted;
+    border-color: darkgray;
+    padding-top: 1%;
+}
+p {
+    font-weight: bold;
+}
+#my-footer {
+    margin-left: 30%;
+    padding-top: 20%;
+}
+#drinks-display {
+    float: left;
+    width: 25%;
+    height: 900px;
+    border: dotted;
+    text-align: center;
+    padding-top: 2%;
+}
+#my-display {
+    float: right;
+    width: 74%;
+    height: 900px;
+    border: dotted;
+    padding-top: 2%;
+}
+#another-one {
+    margin-top: 3%;
+}
+.disp {
+    color: black;
+}
+.newdisp {
+    color: crimson;
+}
+.disp-list {
+    color: black;
+}
