@@ -68,13 +68,14 @@ input[type=submit]:hover {
 #edit-form {
     float: right;
     width: 50%;
+    /* margin-right: 2%; */
 }
 #crystal-image {
-    width: 850px;
-    height: 650px;
+    width: 1000px;
+    height: 700px;
     border: dotted;
     border-color: darkgray;
-    padding-top: 1%;
+    margin-left: 5%;
 }
 p {
     font-weight: bold;
@@ -86,17 +87,23 @@ p {
 #drinks-display {
     float: left;
     width: 25%;
-    height: 900px;
+    height: 450px;
     border: dotted;
     text-align: center;
     padding-top: 2%;
+    margin-left: 10%;
+    overflow-x: scroll;
 }
 #my-display {
     float: right;
     width: 74%;
-    height: 900px;
+    height: 450px;
     border: dotted;
     padding-top: 2%;
+    width: 900px;
+    overflow-x: scroll;
+    float: right;
+    margin-right: 10%;
 }
 #another-one {
     margin-top: 3%;
@@ -109,4 +116,43 @@ p {
 }
 .disp-list {
     color: black;
+}
+.card-img-top {
+    padding-left: 10%;
+}
+#my-display [p] {
+    text-align: center;
+}
+.card-text {
+    text-align: center;
+}
+.card-title {
+    font-size: large;
+}
+/* .btn {
+    margin-left: 40%;
+    background-color: crimson;
+} */
+#my-order {
+    border: dotted;
+    width: 70%;
+    float: left;
+    margin-top: 3%;
+    margin-left: 15%;
+    height: 400px;
+    text-align: center;
+}
+#orders {
+    margin-top: 5%;
+    font-size: 60px;
+}
+.orders {
+    color: crimson;
+}
+#order-count {
+    color: crimson;
+    font-size: 50px;
+}
+#drink-name {
+    font-size: 50px;
 }
