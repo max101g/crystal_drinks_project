@@ -1,106 +1,108 @@
-document.addEventListener ('DOMContentLoaded', ()=>{
-    fetchDrinks ();
-});
+// const { response } = require("express");
 
-//fetch information from the JSON server 
+document.addEventListener ('DOMContentLoaded', ()=> {
+    fetchCocktails ();
+})
 
-function fetchDrinks () {
-    fetch ('http://localhost:3000/drinks')
+function fetchCocktails () {
+    fetch ('http://localhost:3000/cocktails')
     .then ((resp)=> resp.json ())
-    .then (iterateDrinks)
-};
-
-// create a function that allows one to iterate through Fetched data
-
-function iterateDrinks (drinks) {
-    drinks.forEach (myCocktails)
+    .then (iterateCocktails)
 }
 
-// create a function that allows one to use iterated data
+function iterateCocktails (cocktails) {
+    cocktails.forEach (myCocktails)
+}
 
-function myCocktails (drinks) {
-    const drinksListDisp = document.querySelector ('#drinks-display')
-    const displayDrinks = document.createElement ('div')
-    displayDrinks.innerHTML = drinks.strDrink
-    drinksListDisp.appendChild (displayDrinks)
-    const createCard = document.querySelector ('#my-display')
-    const cardsDiv = document.createElement ('div')
-    cardsDiv.innerHTML = `
-        <div class="card mb-3">
-                <img src="${drinks.strDrinkThumb}" class="card-img-top" alt="..." height ='400px' width= '700px'>
-            <div class="card-body">
-                <h5 class="card-title"> ${drinks.strDrink}</h5>
-                <p class="card-text"> Drink Category: ${drinks.strAlcoholic}</p>
-                <p class="card-text">Type of glass: ${drinks.strGlass}</p>
-                <p class="card-text">Ingredients used: ${drinks.strIngredient1},${drinks.strIngredient2}, ${drinks.strIngredient3} and ${drinks.strIngredient4} </p>
-                <p class="card-text"><small class="text-muted">Tell your friends to order a crystall drink</small></p>
-                <br>,<br><br>
+function myCocktails (cocktails) {
+    const dispLst = document.querySelector ('#drinks-display')
+    const dispDiv = document.createElement ('div')
+    dispDiv.innerHTML = cocktails.drink_name
+    dispLst.appendChild (dispDiv)
+    dispDiv.style.cursor = 'pointer'
+    dispDiv.addEventListener ('click', ()=> {
+        const myDisp = document.querySelector ('#my-display')
+        const myDispDiv = document.createElement ('div')
+        myDispDiv.style.cursor = 'all-scroll'
+        myDispDiv.innerHTML = `
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">${cocktails.drink_name}</h5>
+                    <p class="card-text">Cocktails Ingredients:</p>
+                    <p class="card-text">${cocktails.ingredient1}</p>
+                    <p class="card-text">${cocktails.ingredient2}</p>
+                    <p class="card-text">${cocktails.ingredient3}</p>
+                    <p class="card-text">${cocktails.ingredient4}</p>
+                </div>
+                    <img 
+                    src="${cocktails.drink_url}" 
+                    class="card-img-bottom" 
+                    alt="Crystal Drinks Cocktails"
+                    height = "500px"
+                    width = "800px"
+                    >
             </div>
-        </div>
-    `
-    createCard.appendChild (cardsDiv)
-    // const myOrderBtn = document.querySelector ('.btn')
-    // myOrderBtn.addEventListener ('click', ()=> {
-    //     console.log ('${}')
-    // })
-    cardsDiv.style.cursor = 'all-scroll'
-    displayDrinks.style.cursor = 'pointer'
-    displayDrinks.addEventListener ( 'click', (e)=> {
-        const addOrders = document.querySelector ('#order-count')
-        const drinkName = document.querySelector ('#drink-name')
-        drinkName.innerHTML = drinks.strDrink
-        // attempt again
+        `
+        myDisp.appendChild (myDispDiv)
+        const myDrinkName = document.querySelector ('#drink-name')
+        myDrinkName.innerHTML = cocktails.drink_name
     })
 }
 
-// const e = require("express")
+const cocktailsForm = document.querySelector ('#submit-form')
+cocktailsForm.addEventListener ('submit', (e)=> {
+    e.preventDefault ()
 
-const submitForm = document.querySelector ('#submit-form')
-submitForm.addEventListener ('submit', (e)=> {
-    e.preventDefault ();
-    const drinkName = document.getElementById ('drink-name').value
-    const drinkImage = document.getElementById ('drink-image').value
-    const drinkCategory = document.getElementById ('drink-category').value
-    const glassType = document.getElementById ('glass-type').value
-    const ingredientOne = document.getElementById ('ingredient-one').value
-    const ingredientTwo = document.getElementById ('ingredient-two').value
-    const ingredientThree = document.getElementById ('ingredient-three').value
-    const ingredientFour = document.getElementById ('ingredient-four').value
+    const cocktailsName = document.querySelector ('#cocktail-name').value
+    const cocktailsCategory = document.querySelector ('#cocktail-category').value
+    const cocktailGlassType = document.querySelector ('#glass-type').value
+    const cocktailsImageUrl = document.querySelector ('#cocktail-url').value
+    const ingredientOne = document.querySelector ('#ing-one').value
+    const ingredientTwo = document.querySelector ('#ing-two').value
+    const ingredientThree = document.querySelector ('#ing-three').value
+    const ingredientFour = document.querySelector ('#ing-four').value
 
-        fetch ('http://localhost:3000/drinks', {
+    fetch ('http://localhost:3000/cocktails', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify ({
-            strDrink: drinkName,
-            strDrinkThumb: drinkImage,
-            strAlcoholic: drinkCategory,
-            strGlass: glassType,
-            strIngredient1: ingredientOne,
-            strIngredient2: ingredientTwo,
-            strIngredient3: ingredientThree,
-            strIngredient4: ingredientFour,
+            drink_name: cocktailsName,
+            drink_category: cocktailsCategory,
+            glass_type: cocktailGlassType,
+            drink_url: cocktailsImageUrl,
+            ingredient1: ingredientOne,
+            ingredient2: ingredientTwo,
+            ingredient3: ingredientThree,
+            ingredient4: ingredientFour
         })
-        })
-        .then ((response)=> response.json ())
-        .then (myPostFunction)
-    
-})
+    })
+    .then ((response)=> response.json ())
+    .then (myPostFunction)
 
-function myPostFunction (data) {
-    const submitPost = document.getElementById ('drinks-posted')
-    submitPost.innerHTML = `
-        <div class="card mb-3">
-                <img src="${data.strDrinkThumb}" class="card-img-top" alt="..." height ='400px' width= '700px'>
-            <div class="card-body">
-                <h5 class="card-title"> ${data.strDrink}</h5>
-                <p class="card-text"> Drink Category: ${data.strAlcoholic}</p>
-                <p class="card-text">Type of glass: ${data.strGlass}</p>
-                <p class="card-text">Ingredients used: ${data.strIngredient1},${data.strIngredient2}, ${data.strIngredient3} and ${data.strIngredient4} </p>
-                <p class="card-text"><small class="text-muted">Tell your friends to order a crystall drink</small></p>
-                <br>,<br><br>
+    function myPostFunction (data) {
+        const drinksPosted = document.querySelector ('#drinks-posted')
+        const divPosted = document.createElement ('div')
+        divPosted.innerHTML = `
+            <div class="card2">
+                <div class="card-body2">
+                    <h5 class="card-name">${data.drink_name}</h5>
+                    <p class="card-txt">Cocktails Ingredients:</p>
+                    <p class="card-txt">${data.ingredient1}</p>
+                    <p class="card-txt">${data.ingredient2}</p>
+                    <p class="card-txt">${data.ingredient3}</p>
+                    <p class="card-txt">${data.ingredient4}</p>
+                </div>
+                    <img 
+                    src="${data.drink_url}" 
+                    class="card-img-bottom" 
+                    alt="Crystal Drinks Cocktails"
+                    height = "500px"
+                    width = "800px"
+                    >
             </div>
-        </div>
         `
-}
+        drinksPosted.appendChild (divPosted)
+    }
+})
