@@ -4,6 +4,8 @@ document.addEventListener ('DOMContentLoaded', ()=> {
     fetchCocktails ();
 })
 
+// Create a GET function that allows one to derive data from our API
+
 function fetchCocktails () {
     fetch ('http://localhost:3000/cocktails')
     .then ((resp)=> resp.json ())
@@ -13,6 +15,8 @@ function fetchCocktails () {
 function iterateCocktails (cocktails) {
     cocktails.forEach (myCocktails)
 }
+
+// Create a function that allows one to display the information from the GET function
 
 function myCocktails (cocktails) {
     const dispLst = document.querySelector ('#drinks-display')
@@ -46,8 +50,16 @@ function myCocktails (cocktails) {
         myDisp.appendChild (myDispDiv)
         const myDrinkName = document.querySelector ('#drink-name')
         myDrinkName.innerHTML = cocktails.drink_name
+
+        dispDiv.addEventListener ('dblclick', ()=> {
+            // console.log ('This is it')
+            dispDiv.innerHTML = ''
+            deleteFunction (cocktails.id)
+        })
     })
 }
+
+// Create a function that allows one to post their favourite drink using the form in the UI
 
 const cocktailsForm = document.querySelector ('#submit-form')
 cocktailsForm.addEventListener ('submit', (e)=> {
@@ -79,30 +91,17 @@ cocktailsForm.addEventListener ('submit', (e)=> {
         })
     })
     .then ((response)=> response.json ())
-    .then (myPostFunction)
-
-    function myPostFunction (data) {
-        const drinksPosted = document.querySelector ('#drinks-posted')
-        const divPosted = document.createElement ('div')
-        divPosted.innerHTML = `
-            <div class="card2">
-                <div class="card-body2">
-                    <h5 class="card-name">${data.drink_name}</h5>
-                    <p class="card-txt">Cocktails Ingredients:</p>
-                    <p class="card-txt">${data.ingredient1}</p>
-                    <p class="card-txt">${data.ingredient2}</p>
-                    <p class="card-txt">${data.ingredient3}</p>
-                    <p class="card-txt">${data.ingredient4}</p>
-                </div>
-                    <img 
-                    src="${data.drink_url}" 
-                    class="card-img-bottom" 
-                    alt="Crystal Drinks Cocktails"
-                    height = "500px"
-                    width = "800px"
-                    >
-            </div>
-        `
-        drinksPosted.appendChild (divPosted)
-    }
+    .then ((myPostFunction)=> console.log (myPostFunction))
 })
+
+// Create a function that deletes an item from the API server on double click
+function deleteFunction (id) {
+    fetch (`http://localhost:3000/cocktails/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then ((res)=> res.json ())
+    .then ((drinkDelete)=> console.log (drinkDelete))
+}

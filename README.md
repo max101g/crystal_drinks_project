@@ -7,7 +7,7 @@ The cystal drinks online platform offers its user a number of ceative yet relata
 * Possible vissual aspect of the cocktail
 * The ingredients needed to create every single cocktail
 * A feature that allows one to post a new beverage 
-* 
+* A double click function that allows the user to delete a beverage 
 * 
 
 ### crystal drinks ###
