@@ -1,8 +1,9 @@
-/* body {
-    background-image: url('https://media.istockphoto.com/id/1042153956/photo/abstract-powder-splatted-background-paint-holi.jpg?s=612x612&w=0&k=20&c=kj1Vy-iMlK7xhJQuXUk1TqMxldZxE2GJCFxQYI7wJBk=');
+body {
+    /* background-color: antiquewhite; */
+    background-image: url('https://images.unsplash.com/photo-1500631195312-e3a9a5819f92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80');
     background-repeat: no-repeat;
     background-size: cover;
-} */
+}
 #top-header {
     display: flex;
     justify-content: center;
@@ -75,8 +76,8 @@ input[type=submit]:hover {
 #crystal-image {
     width: 1000px;
     height: 760px;
-    border: dotted;
-    border-color: darkgray;
+    /* border: dotted; */
+    /* border-color: darkgray; */
     margin-left: 5%;
 }
 p {
